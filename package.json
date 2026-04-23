@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx tsx watch --env-file .env src/index.ts",
+    "start": "NODE_ENV=production npx tsx --env-file .env --env-file .env.production src/index.ts"
+  },
+  "dependencies": {
+    "gramio": "^0.9.0",
+    "env-var": "^7.5.0",
+    "tsx": "^4.21.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/node": "^25.6.0"
+  }
+}
