@@ -67,28 +67,9 @@ const isTelegramInlinePhotoUrl = (url: string | null): url is string => {
 	return Boolean(pathname && (pathname.endsWith(".jpg") || pathname.endsWith(".jpeg")));
 };
 
-const pickInlinePhotoUrl = (post: {
-	sample_url?: string;
-	preview_url?: string;
-	file_url?: string;
-}): string | null => {
-	const sampleUrl = toAbsoluteUrl(post.sample_url);
+const pickInlinePhotoUrl = (post: { preview_url?: string }): string | null => {
 	const previewUrl = toAbsoluteUrl(post.preview_url);
-	const fileUrl = toAbsoluteUrl(post.file_url);
-
-	if (isTelegramInlinePhotoUrl(sampleUrl)) {
-		return sampleUrl;
-	}
-
-	if (isTelegramInlinePhotoUrl(previewUrl)) {
-		return previewUrl;
-	}
-
-	if (isTelegramInlinePhotoUrl(fileUrl)) {
-		return fileUrl;
-	}
-
-	return null;
+	return isTelegramInlinePhotoUrl(previewUrl) ? previewUrl : null;
 };
 
 const toNumber = (value: number | string | undefined): number | null => {
